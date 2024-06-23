@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  fpm-to-do-list:
+    build: fpm
+    volumes:
+      - ../:/application:delegated
+      - phpsocket1:/var/run
+    ports:
+      - "3001:3001"
+    environment:
+      XDEBUG_CONFIG: remote_enable=1 remote_host=host.docker.internal profiler_enable=0
+      PHP_IDE_CONFIG: "serverName=Docker"
+    extra_hosts:
+      host.docker.internal: 172.17.0.1
+
+volumes:
+    phpsocket1:
