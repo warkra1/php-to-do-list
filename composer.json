@@ -1,0 +1,17 @@
+{
+    "name": "warkrai/to-do-item",
+    "autoload": {
+        "psr-4": {
+            "Warkrai\\ToDoItem\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "warkrai"
+        }
+    ],
+    "require": {
+        "psr/container": "^2.0",
+        "ext-readline": "*"
+    }
+}
