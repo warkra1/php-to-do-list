@@ -7,16 +7,19 @@ use Warkrai\ToDoItem\Model\ToDoItem;
 use Warkrai\ToDoItem\Model\ToDoList;
 use Warkrai\ToDoItem\Model\User;
 use Warkrai\ToDoItem\Repository\Exception\ModelNotFoundException;
+use Warkrai\ToDoItem\Repository\RepositoryInterface;
 use Warkrai\ToDoItem\Repository\ToDoListRepository;
 
 class ToDoListService
 {
-    public function __construct(private ToDoListRepository $repository) {}
+    public function __construct(private RepositoryInterface $repository) {}
 
     public function getList(User $user): ToDoList
     {
         try {
-            return $this->repository->read($user->getLogin());
+            /** @var ToDoList $list */
+            $list = $this->repository->read($user->getLogin());
+            return $list;
         } catch (ModelNotFoundException) {
             return $this->createList($user);
         }
