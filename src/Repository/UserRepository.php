@@ -19,14 +19,4 @@ class UserRepository extends AbstractFileRepository
     {
         return new User($data['login'], $data['password']);
     }
-
-    public function exists(string $login): bool
-    {
-        try {
-            $this->read($login);
-            return true;
-        } catch (ModelNotFoundException) {
-            return false;
-        }
-    }
 }
